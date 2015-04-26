@@ -46,6 +46,8 @@ public class OpencmsUtils {
 			cmstype = "function";
 		} else if (ext.equals("xml") && folder.endsWith("formatters")) {
 			cmstype = "formatter_config";
+		} else if (ext.equals("xml") && folder.endsWith("elementviews")) {
+			cmstype = "elementview";
 		} else if (folder.contains("i18n")) {
 			cmstype = "xmlvfsbundle";
 		} else if (ext.equals("xml") || ext.equals("xsd")) {
