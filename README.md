@@ -4,8 +4,19 @@ A maven plugin that helps with Opencms module development
 # Publish goal
 publishes modified resources to opencms via JLAN server
 
+configuration properties
+```xml
+<url>smb://Admin:admin@localhost:1446/OPENCMS/</url>
+<module>org.marmots.opencms.samplesite</module>
+```
+
 # Package goal
 generates opencms module manifest.xml and packages it together with all resources, classes and libs.
+
+configuration properties
+```xml
+<module>org.marmots.opencms.samplesite</module>
+```
 
 # Usage
 There are detailed instructions in the wiki, but to start quick:
@@ -21,7 +32,6 @@ There are detailed instructions in the wiki, but to start quick:
 5. create /src/main/opencms folder and extract there the packaged module
 
 6. modify pom.xml to enable the plugin
-
 
 ```xml
 ...
@@ -150,3 +160,5 @@ There are detailed instructions in the wiki, but to start quick:
 		</pluginManagement>
 	</build>
 ```
+
+7. That's it!
