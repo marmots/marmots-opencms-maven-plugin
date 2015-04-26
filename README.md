@@ -161,4 +161,4 @@ There are detailed instructions in the wiki, but to start quick:
 	</build>
 ```
 
-7. That's it!
+That's it!
