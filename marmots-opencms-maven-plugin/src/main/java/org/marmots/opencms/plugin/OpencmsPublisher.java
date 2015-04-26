@@ -115,7 +115,7 @@ public class OpencmsPublisher extends AbstractMojo {
 			}
 
 		} catch (Exception e) {
-			throw new MojoExecutionException("Error publishing files", e);
+			throw new MojoExecutionException("Error publishing files: ensure opencms is started and JLAN server configured, alternativelly disable publish plugin.", e);
 		}
 	}
 
