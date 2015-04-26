@@ -161,4 +161,7 @@ There are detailed instructions in the wiki, but to start quick:
 	</build>
 ```
 
-That's it!
+# That's it!
+
+* eclipse m2 compile phase will trigger (automatically) publish goal: the plugin will copy all modified resources to opencms via JLAN url (smb://Admin:admin@localhost:1446/OPENCMS/)
+* maven install phase will trigger package goal: the plugin will create org.marmots.opencms.samplesite.zip
