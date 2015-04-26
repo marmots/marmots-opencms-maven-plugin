@@ -39,7 +39,7 @@ There are detailed instructions in the wiki, but to start quick:
 		<dependency>
 			<groupId>org.marmots.opencms</groupId>
 			<artifactId>marmots-opencms-maven-plugin</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.1</version>
 			<type>maven-plugin</type>
 		</dependency>
 	</dependencies>
@@ -75,7 +75,7 @@ There are detailed instructions in the wiki, but to start quick:
 			<plugin>
 				<groupId>org.marmots.opencms</groupId>
 				<artifactId>marmots-opencms-maven-plugin</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<version>0.0.1</version>
 				<executions>
 					<execution>
 						<id>publish</id>
@@ -121,7 +121,7 @@ There are detailed instructions in the wiki, but to start quick:
 											marmots-opencms-maven-plugin
 										</artifactId>
 										<versionRange>
-											[0.0.1-SNAPSHOT,)
+											[0.0.1,)
 										</versionRange>
 										<goals>
 											<goal>module</goal>
@@ -140,7 +140,7 @@ There are detailed instructions in the wiki, but to start quick:
 											marmots-opencms-maven-plugin
 										</artifactId>
 										<versionRange>
-											[0.0.1-SNAPSHOT,)
+											[0.0.1,)
 										</versionRange>
 										<goals>
 											<goal>publish</goal>
