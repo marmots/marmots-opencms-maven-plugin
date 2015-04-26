@@ -4,16 +4,38 @@
 	<groupId>org.marmots.opencms</groupId>
 	<artifactId>marmots-opencms-maven-plugin</artifactId>
 	<packaging>maven-plugin</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 
-	<name>marmots-opencms-maven-plugin</name>
-	<url>http://marmots.name</url>
+	<name>${project.groupId}:${project.artifactId}</name>
+	<description>A maven plugin that helps with Opencms module development</description>
+	<url>http://github.com/marmots/marmots-opencms-maven-plugin</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
+		<java.version>1.5</java.version>
 	</properties>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>marmots</name>
+			<email>marmots@gmail.com</email>
+			<url>http://github.com/marmots</url>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git@github.com:/marmots/marmots-opencms-maven-plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:/marmots/marmots-opencms-maven-plugin.git</developerConnection>
+		<url>https://github.com/marmots/marmots-opencms-maven-plugin.git</url>
+	</scm>
 
 	<dependencies>
 		<dependency>
@@ -46,6 +68,11 @@
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.12</version>
 		</dependency>
 	</dependencies>
 
@@ -89,6 +116,20 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+					<execution>
+						<phase>test</phase>
+						<goals>
+							<goal>resources</goal>
+							<goal>testResources</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version>
 				<configuration>
@@ -98,6 +139,63 @@
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.3</version>
+				<configuration>
+					<!-- avoiding javadoc warnings caused by Mojo annotations -->
+					<tagletArtifacts>
+						<tagletArtifact>
+							<groupId>org.apache.maven.plugin-tools</groupId>
+							<artifactId>maven-plugin-tools-javadoc</artifactId>
+							<version>2.9</version>
+						</tagletArtifact>
+					</tagletArtifacts>
+					<detectOfflineLinks></detectOfflineLinks>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.8</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.4</version>
 			</plugin>
 		</plugins>
 	</build>

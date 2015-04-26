@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Goal which packages as opencms module.
+ * Goal which publishes modified files of an opencms module.
  *
  * @goal publish
  * 
@@ -62,6 +62,11 @@ public class OpencmsPublisher extends AbstractMojo {
 
 	private File opencmsDirectory;
 
+	/**
+	 * returns the location of the opencms files<br>
+	 * (folder containing manifest.xml, module folder and/or workplace folder)
+	 * @return File location of the opencms files
+	 */
 	private File opencmsDirectory() {
 		if (opencmsDirectory == null) {
 			// Set opencms directory
@@ -74,7 +79,9 @@ public class OpencmsPublisher extends AbstractMojo {
 		return opencmsDirectory;
 	}
 
-	@Override
+	/**
+	 * executes module publish plugin
+	 */
 	public void execute() throws MojoExecutionException, MojoFailureException {
 		try {
 			logger.info("publishing files...");
@@ -112,6 +119,12 @@ public class OpencmsPublisher extends AbstractMojo {
 		}
 	}
 
+	/**
+	 * copies supplied file system file to opencms destination identified by folder
+	 * @param file file system file to copy
+	 * @param folder opencms destination
+	 * @throws Exception io related exceptions
+	 */
 	public void copy(File file, String folder) throws Exception {
 		// Fix folder name
 		if (!StringUtils.isEmpty(folder)) {

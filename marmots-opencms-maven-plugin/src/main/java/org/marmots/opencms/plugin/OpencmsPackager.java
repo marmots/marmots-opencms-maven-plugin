@@ -65,6 +65,11 @@ public class OpencmsPackager extends AbstractMojo {
 	private File opencmsDirectory;
 	private ManifestBuilder manifestBuilder;
 
+	/**
+	 * returns the location of the opencms files<br>
+	 * (folder containing manifest.xml, module folder and/or workplace folder)
+	 * @return File location of the opencms files
+	 */
 	private File opencmsDirectory() {
 		if (opencmsDirectory == null) {
 			// Set opencms directory
@@ -77,6 +82,13 @@ public class OpencmsPackager extends AbstractMojo {
 		return opencmsDirectory;
 	}
 
+	/**
+	 * Adds a file to the module zip and updates manifest.xml accordingly
+	 * @param output zip stream
+	 * @param file file to add
+	 * @param folder zip folder onto append it (corresponds to opencms folder)
+	 * @throws Exception xml and io related exceptions 
+	 */
 	private void addToZip(ZipOutputStream output, File file, String folder) throws Exception {
 		// Fix folder name
 		if (!StringUtils.isEmpty(folder)) {
@@ -95,7 +107,7 @@ public class OpencmsPackager extends AbstractMojo {
 
 		// Check if it's manifest
 		if (!name.equals("manifest.xml")) {
-			manifestBuilder.addToManifest(file, name);
+			manifestBuilder.addToManifest(name, file.isDirectory());
 		}
 
 		// Process entry
@@ -112,6 +124,9 @@ public class OpencmsPackager extends AbstractMojo {
 		}
 	}
 
+	/**
+	 * executes module package plugin
+	 */
 	public void execute() throws MojoExecutionException {
 		FileOutputStream zip = null;
 		try {
@@ -124,7 +139,8 @@ public class OpencmsPackager extends AbstractMojo {
 			}
 
 			logger.info("instantiating manifest builder...");
-			manifestBuilder = new ManifestBuilder(opencmsDirectory());
+			manifestBuilder = new ManifestBuilder();
+			manifestBuilder.openManifest(new File(opencmsDirectory() + "/manifest.xml"));
 
 			zip = new FileOutputStream(outputDirectory.getAbsolutePath() + "/" + module + ".zip");
 			ZipOutputStream output = new ZipOutputStream(zip);
@@ -140,7 +156,7 @@ public class OpencmsPackager extends AbstractMojo {
 
 			logger.info("packaging class files...");
 			File classes = new File(outputDirectory.getAbsolutePath() + "/classes");
-			manifestBuilder.addToManifest(classes, "system/modules/" + module + "/classes");
+			manifestBuilder.addToManifest("system/modules/" + module + "/classes", true);
 			File[] classFiles = classes.listFiles();
 			for (File file : classFiles) {
 				if (file.isDirectory()) {
