@@ -9,12 +9,19 @@ generates opencms module manifest.xml and packages it together with all resource
 
 # Usage
 There are detailed instructions in the wiki, but to start quick:
+
 1. create a module in opencms
+
 2. add content types, formatter, whatever you need
+
 3. publish and export it
+
 4. create a new maven project (packaging jar)
+
 5. create /src/main/opencms folder and extract there the packaged module
+
 6. modify pom.xml to enable the plugin
+
 
 ```xml
 ...
