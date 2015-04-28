@@ -1,5 +1,7 @@
 # marmots-opencms-maven-plugin
-A maven plugin that helps with Opencms module development
+A maven plugin that helps with Opencms module development. 
+
+See it in action at https://youtu.be/tXCVnVuEMU4
 
 # Publish goal
 publishes modified resources to opencms via JLAN server
